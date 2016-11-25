@@ -15,7 +15,8 @@ var Clock = React.createClass({
 	},
 
 	formatSeconds: function(totalSecs) {
-		var mins = Math.floor(totalSecs/60);
+		var hours = Math.floor(totalSecs/3600);
+		var mins = Math.floor(totalSecs/60) % 60;
 		var secs = totalSecs % 60;
 
 		if (mins<10) {
@@ -24,7 +25,9 @@ var Clock = React.createClass({
 		if (secs<10) {
 			secs = "0" + secs;
 		}
-		return mins + ":" + secs;
+
+		if (hours>0) return hours+":"+mins+":"+secs;
+		else return mins + ":" + secs;
 	},
 
 	render: function() {
