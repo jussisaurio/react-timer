@@ -20,12 +20,18 @@ var Controls = React.createClass({
 
 	render: function(){
 		
-		var {status} = this.props;
+		var {status, parent} = this.props;
 
 		var renderStartStopButton = () => {
 
-			if (status==='paused') return <button onClick={this.onStatusChange('running')} className="button primary">Start</button>;
-			else if (status==='running') return <button onClick={this.onStatusChange ('paused')} className="button secondary">Pause</button>;
+			if (parent==='countdown') {
+				if (status==='paused') return <button onClick={this.onStatusChange('running')} className="button primary">Start</button>;
+			}
+			else if (parent==='timer') {
+				if (status==='paused' || status==='stopped') return <button onClick={this.onStatusChange('running')} className="button primary">Start</button>;
+			}
+
+			if (status==='running') return <button onClick={this.onStatusChange ('paused')} className="button secondary">Pause</button>;
 		};	
 
 		return (
