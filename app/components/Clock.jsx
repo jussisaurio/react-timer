@@ -5,7 +5,8 @@ var Clock = React.createClass({
 	getDefaultProps: function() {
 
 		return {
-			totalSecs: 0
+			totalSecs: 0,
+			status: 'stopped'
 		};
 	},
 
@@ -32,9 +33,20 @@ var Clock = React.createClass({
 
 	render: function() {
 
-		var {totalSecs} = this.props;
+		var {totalSecs, status} = this.props;
+
+		var renderClock = () => {
+
+			if (status==='paused') {
+				return <div className="clock clock-spin"><span className="clock-text">{this.formatSeconds(this.props.totalSecs)}</span></div>;
+			}
+			else return <div className="clock"><span className="clock-text">{this.formatSeconds(this.props.totalSecs)}</span></div>;
+		};
+
 		return (
-			<div className="clock"><span className="clock-text">{this.formatSeconds(this.props.totalSecs)}</span></div>
+			<div>
+			{renderClock()}
+			</div>
 		);
 	}
 });

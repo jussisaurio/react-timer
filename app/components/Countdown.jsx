@@ -40,6 +40,26 @@ var Countdown = React.createClass({
 		}
 	},
 
+	// more react component lifecycle methods (keeping most of these here for memorization purposes)
+
+	componentWillUpdate: function (nextProps, nextState) {
+
+	},
+
+	componentWillMount: function() {
+		console.log('countdown component about to mount');
+	},
+
+	componentDidMount: function() {
+		console.log('countdown component mounted');
+	},
+
+	componentWillUnmount: function() {
+		console.log('countdown component about to unmount, clearing timer');
+		clearInterval(this.timer);
+		this.timer = undefined;
+	},
+
 	handleSetCountdown: function(seconds) {
 
 		if (typeof seconds === 'number' && seconds>0) {
@@ -66,6 +86,8 @@ var Countdown = React.createClass({
 				count: oneSecLess >= 0 ? oneSecLess : 0
 			});
 
+			if (oneSecLess===0) this.setState({status: 'stopped'});
+
 		}, 1000);
 
 		
@@ -83,7 +105,7 @@ var Countdown = React.createClass({
 		
 		return (
 			<div>
-			<Clock totalSecs={count}/>
+			<Clock status={status} totalSecs={count}/>
 			{renderFormOrControls()}
 			</div>
 		);
