@@ -1,4 +1,5 @@
 var webpack = require('webpack'); //webpack utilities
+var path = require('path'); // core node module 'path'
 
 module.exports = {
 	entry: [
@@ -44,6 +45,11 @@ module.exports = {
 				test: /\.jsx?$/,
 				exclude: /(node_modules|bower_components)/
 			}
+		]
+	},
+	sassLoader:{
+		includePaths: [
+			path.resolve(__dirname, './node_modules/foundation-sites/scss')
 		]
 	},
 	devtool: '#inline-source-map'
