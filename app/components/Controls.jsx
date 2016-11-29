@@ -9,7 +9,6 @@ var Controls = React.createClass({
 	},
 
 	componentWillReceiveProps(nextProps) {
-		console.log('component will receive props: ' + nextProps.status);	
 	},
 
 	onStatusChange: function(newStatus) {

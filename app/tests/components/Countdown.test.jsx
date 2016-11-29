@@ -37,5 +37,31 @@ describe ('Countdown', () =>{
 			}, 3000);
 
 		});
+
+		it('should not count down when paused', (valmis) => {
+			var countdown = TestUtils.renderIntoDocument(<Countdown/>);
+			countdown.handleSetCountdown(5);
+			countdown.handleStatusChange('paused');
+
+			setTimeout(() =>{
+				expect(countdown.state.count).toBe(5);
+				expect(countdown.state.status).toBe('paused');
+				valmis(); // mocha waits until this function is called (for asynchronous tests)
+			}, 1001);
+
+		});
+
+		it('should reset timer and stop count when stopped', (valmis) => {
+			var countdown = TestUtils.renderIntoDocument(<Countdown/>);
+			countdown.handleSetCountdown(5);
+			countdown.handleStatusChange('stopped');
+
+			setTimeout(() =>{
+				expect(countdown.state.count).toBe(0);
+				expect(countdown.state.status).toBe('stopped');
+				valmis(); // mocha waits until this function is called (for asynchronous tests)
+			}, 1001);
+
+		});
 	});
 });

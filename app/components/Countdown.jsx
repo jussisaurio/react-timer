@@ -47,15 +47,12 @@ var Countdown = React.createClass({
 	},
 
 	componentWillMount: function() {
-		console.log('countdown component about to mount');
 	},
 
 	componentDidMount: function() {
-		console.log('countdown component mounted');
 	},
 
 	componentWillUnmount: function() {
-		console.log('countdown component about to unmount, clearing timer');
 		clearInterval(this.timer);
 		this.timer = undefined;
 	},
@@ -105,6 +102,7 @@ var Countdown = React.createClass({
 		
 		return (
 			<div>
+			<h1 className="page-title">Countdown</h1>
 			<Clock status={status} totalSecs={count}/>
 			{renderFormOrControls()}
 			</div>
