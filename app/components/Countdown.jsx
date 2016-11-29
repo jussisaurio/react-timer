@@ -96,7 +96,7 @@ var Countdown = React.createClass({
 
 		var renderFormOrControls = () => {
 			if (status==='stopped') return <CountdownForm onSetCountdown={this.handleSetCountdown}/>;	
-			else return <Controls parent="countdown" status={status} onStatusChange={this.handleStatusChange}/>;	
+			else return <Controls status={status} onStatusChange={this.handleStatusChange}/>;	
 		};
 
 		

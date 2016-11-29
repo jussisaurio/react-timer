@@ -68,7 +68,7 @@ var Timer = React.createClass({
 			<div>
 			<h1 className="page-title">Timer</h1>
 			<Clock status={status} totalSecs={count}/>
-			<Controls parent="timer" status={status} onStatusChange={this.handleStatusChange}/>;	
+			<Controls status={status} onStatusChange={this.handleStatusChange}/>;	
 			</div>
 		);
 	}
