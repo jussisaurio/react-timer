@@ -1,1 +1,1 @@
-React Boilerplate
+React Timer application, learning about component reusability etc
