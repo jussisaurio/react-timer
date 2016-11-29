@@ -4,7 +4,15 @@ var React = require('react');
 var Controls = React.createClass({
 
 	propTypes: {
-		status: React.PropTypes.string.isRequired
+		status: React.PropTypes.string.isRequired,
+		onStatusChange: React.PropTypes.func.isRequired
+	},
+
+	onStatusChange: function(newStatus) {
+
+		return () => {
+			this.props.onStatusChange(newStatus);
+		}
 	},
 
 	render: function(){
@@ -13,14 +21,14 @@ var Controls = React.createClass({
 
 		var renderStartStopButton = () => {
 
-			if (status==='paused') return <button className="button primary">Start</button>;
-			else if (status==='running') return <button className="button secondary">Pause</button>;
+			if (status==='paused') return <button onClick={this.onStatusChange('running')} className="button primary">Start</button>;
+			else if (status==='running') return <button onClick={this.onStatusChange ('paused')} className="button secondary">Pause</button>;
 		};	
 
 		return (
 			<div className="controls">
 				{renderStartStopButton()}
-				<button className="button alert">Clear</button>
+				<button onClick={this.onStatusChange('stopped')} className="button alert">Clear</button>
 			</div>
 		);
 	}
